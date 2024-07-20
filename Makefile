@@ -1,6 +1,6 @@
-CFLAGS=-Wall -Os -fno-ident -fno-asynchronous-unwind-tables -ffreestanding -L/usr/X11R6/lib -L/usr/local/lib -lX11 -lXtst -lXinerama -lxkbcommon -I/usr/X11R6/include -I/usr/local/include
+CFLAGS=-Wall -Os -lX11 -lXtst
 CC=gcc ${CFLAGS}
-INSTALL_DIR=/usr/local/bin
+DESTDIR=/usr/local/bin
 
 .PHONY: all
 all: caffeinate
@@ -12,4 +12,4 @@ clean:
 	rm -f ./caffeinate
 
 install:
-	install ./caffeinate ${INSTALL_DIR}
+	install ./caffeinate -D --mode 755 --target-directory "${DESTDIR}"
